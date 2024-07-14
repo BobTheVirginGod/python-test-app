@@ -2,6 +2,14 @@ version: "3.7"
 
 services:
 
+  web:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
+    command: python app.py
+
   app_proxy:
     environment:
       # The format here is: <app-id>_<docker-service-name>_1
@@ -10,5 +18,6 @@ services:
     
   server:
     image: getumbrel/community-app-store-hello-world:latest
-    user: "4000:4000"
+    user: "1000:1000"
     init: true
+
